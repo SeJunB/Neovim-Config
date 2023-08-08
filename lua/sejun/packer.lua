@@ -12,6 +12,12 @@ return require('packer').startup(function(use)
         -- or                            , branch = '0.1.x',
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
+
+    use {
+        'kkoomen/vim-doge',
+        run = ':call doge#install()'
+    }
+
     use 'folke/tokyonight.nvim'
 
     use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
@@ -40,5 +46,5 @@ return require('packer').startup(function(use)
             { 'hrsh7th/cmp-nvim-lsp' }, -- Required
             { 'L3MON4D3/LuaSnip' },     -- Required
         },
-   }
+    }
 end)

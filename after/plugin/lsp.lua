@@ -6,9 +6,28 @@ lsp.on_attach(function(client, bufnr)
 end)
 
 
+lsp.ensure_installed({
+    'tsserver',
+    'eslint',
+})
+
+local lspconfig = require('lspconfig')
 
 -- (Optional) Configure lua language server for neovim
-require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
+
+lspconfig.tsserver.setup{
+    settings = {
+        -- Check types in JS.
+        implicitProjectConfiguration = {
+            checkJs = true
+        },
+    }
+}
+--- Format on =
+vim.keymap.set('n', '<leader>f', function()
+        vim.lsp.buf.format {async = true}
+    end, {})
 
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
